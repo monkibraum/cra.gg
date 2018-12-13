@@ -1,32 +1,95 @@
-.App {
+
+*{
+  list-style: none;
+  margin:0;
+  padding: 0;
+}
+
+body{
+  background: #00b2ff;
+}
+
+
+.input_box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,-50%);
+  width: 500px;
+  margin: 0 auto 0;
+  border-radius: 2px;
+}
+.input_box input[type="text"]{
+  width: 100%;
+  padding: 18px 150px 18px 17px;
+  font-size: 14px;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color:#777;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  outline: none;
+}
+
+
+.search_item{
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 2px;
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+.search_item h4{
+  margin: 0 ;
+  font-size: 14px;
+  color: #00b2ff;
+}
+.search_item h3{
+  margin: 5px 0 0 ;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.search_item ul{
+  overflow: hidden;
+}
+.search_item_left{
+  width: 70%;
+  float: left;
+}
+
+.search_item_right{
+  width: 30%;
+  float: left;
+}
+
+.search_item_profile{
+  float:right;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #aaa;
+}
+.lv{
+  font-size: 15px;
+}
+.search_result{
+  display: none;
+  opacity: 0;
+  transition: 0.3s all;
+}
+.search_result.active{
+  transition: all 3s ease-in;
+  display: block;
+  opacity: 1;
+}
+
+.rai-activity-indicator{
+  width: 100px;
+  margin: 50px auto;
+  display: block !important;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
