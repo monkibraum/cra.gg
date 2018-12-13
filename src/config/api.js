@@ -13,3 +13,9 @@ export const findTier = async (id) => {
     return data[0].tier
 }
 
+export const AllmatchList = async (accountId) => {    
+  const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?api_key=${key}`);
+  const data = await first.json();
+  return data.matches;
+}
+
