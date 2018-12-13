@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-
+import Moment from 'react-moment';
 import propTypes from 'prop-types';
 
 function Match({gameId, champion, queue, timestamp}) {
     // const { classes } = props;
+    var parsed = new Date(timestamp).toISOString() ;
     return (
         <div>
-            <span>{gameId}</span> <span>{champion}</span> <span>{queue}</span> <span>{timestamp}</span>
+            <span>{gameId}</span> <span>{champion}</span> <span>{queue}</span> <Moment locale="ko"fromNow>{parsed}</Moment>
         </div>
     );
   }

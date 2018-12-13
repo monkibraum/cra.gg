@@ -4,6 +4,7 @@ import './App.css';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Match from './Match';
+import 'moment/locale/ko';
 
 class App extends Component {
 
@@ -74,7 +75,7 @@ class App extends Component {
   _matchList = async () => {
     const accountId = await findAccountId(this.state.name);
     const matchList = await AllmatchList(accountId);
-    this.setState({ matchList })
+    this.setState({ matchList }, ()=>console.log(this.state.matchList))
     // console.log(this.state.matchList)
   }
 
