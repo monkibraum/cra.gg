@@ -15,5 +15,17 @@ export const findSummonerInfo = async (id) => {
     const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/summoner/v3/summoners/${id}?api_key=${key}`) 
     const data =  await first.json();
     return data
+
+}
+export const findAccountId = async (name) => {
+    const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/summoner/v3/summoners/by-name/${name}?api_key=${key}`);
+    const data = await first.json();
+    return data.accountId;
+}
+
+export const AllmatchList = async (accountId) => {    
+  const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?api_key=${key}`);
+  const data = await first.json();
+  return data.matches;
 }
 
