@@ -29,3 +29,18 @@ export const AllmatchList = async (accountId) => {
   return data.matches;
 }
 
+export const ChampionName = (matchChampionId) => {    
+    var cham = "";
+    switch(matchChampionId) {
+        case   17 :
+        cham = '티모개년';
+    }
+    const data = cham;
+    return data;
+}
+
+
+
+
+
+
