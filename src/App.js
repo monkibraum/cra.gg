@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   _renderList = () => {
-    console.log('rendering : List')
+    console.log('rendering : Listaaaaa')
     // console.log('렌더링해? 현재 state는? ' + this.state.matchList)
     const matchList = this.state.matchList.map((item) => {
       return <Match
