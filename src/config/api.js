@@ -24,8 +24,23 @@ export const findAccountId = async (name) => {
 }
 
 export const AllmatchList = async (accountId) => {    
-  const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?api_key=${key}`);
+  const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?endIndex=10&api_key=${key}`);
   const data = await first.json();
   return data.matches;
 }
+
+export const ChampionName = (matchChampionId) => {    
+    var cham = "";
+    switch(matchChampionId) {
+        case   17 :
+        cham = '티모개년';
+    }
+    const data = cham;
+    return data;
+}
+
+
+
+
+
 

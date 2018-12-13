@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList,  } from './config/api';
+import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList, ChampionName } from './config/api';
 import './App.css';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
@@ -95,8 +95,7 @@ class App extends Component {
 
         <div className="input_box">
           <input type="text" onChange={this.onChangeName} onKeyDown={this.onKeyDown} placeholder="소환사명" />
-          <div>최근 전적보기</div>
-          {this.state.matchList ? this._renderList() : '?'}
+          
 
           {this.state.isLoaded == false ?
             <Dots color={'#fff'} />
@@ -114,8 +113,14 @@ class App extends Component {
                   </li>
                 </ul>
               </div>
+
+              <div>최근 전적보기</div>
+              {this.state.matchList ? this._renderList() : '?'}
+
             </div>
           }
+
+          
         </div>
 
       </div>
