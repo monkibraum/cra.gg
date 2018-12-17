@@ -65,7 +65,7 @@ class App extends Component {
     const matchList = this.state.matchList.map((item) => {
       return <Match
         gameId={item.gameId}
-        champion={item.champion}
+        championID={item.champion}
         queue={item.queue}
         timestamp={item.timestamp} />
     })
@@ -114,7 +114,6 @@ class App extends Component {
                 </ul>
               </div>
 
-              <div>최근 전적보기</div>
               {this.state.matchList ? this._renderList() : '?'}
 
             </div>
