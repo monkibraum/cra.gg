@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList, ChampionName } from './config/api';
+import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList, ChampionName, myGameId, myMatchInfo } from './config/api';
 import './App.css';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
@@ -36,8 +36,8 @@ class App extends Component {
 
 
   search = async () => {
-    this._matchList();
-    
+    this._matchList();    
+
     this.setState({
       isLoaded: false,
       searching: false,
@@ -64,7 +64,6 @@ class App extends Component {
     // console.log('렌더링해? 현재 state는? ' + this.state.matchList)
     const matchList = this.state.matchList.map((item) => {
       return <Match
-        gameId={item.gameId}
         champion={item.champion}
         queue={item.queue}
         timestamp={item.timestamp} />
@@ -73,10 +72,22 @@ class App extends Component {
   }
 
   _matchList = async () => {
+    this._myMatchInfo();
+
     const accountId = await findAccountId(this.state.name);
     const matchList = await AllmatchList(accountId);
     this.setState({ matchList }, ()=>console.log(this.state.matchList))
     // console.log(this.state.matchList)
+  }
+
+  _myMatchInfo = async () => {
+    const accountId = await findAccountId(this.state.name);
+    // 이중 for문
+    
+      const gameId = await myGameId(accountId);
+      // console.log('gameId = ' + gameId);
+      const matchInfo = await myMatchInfo(gameId);
+    this.setState({ matchInfo }, () => console.log('matchInfo = ' + this.state.matchInfo))
   }
 
   async componentDidMount() {

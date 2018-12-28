@@ -328,12 +328,12 @@ ChampionName = (matchChampionId) => {
 
 
 render() {
-    const {champion, gameId, queue, timestamp} = this.props;
+    const {champion, queue, timestamp} = this.props;
     
     const parsed = new Date(timestamp).toISOString() ;
     return (
         <div>
-            <span>{gameId}</span> <span>{this.ChampionName(champion)}</span> <span>{queue}</span> <Moment locale="ko"fromNow>{parsed}</Moment>
+           <span>{this.ChampionName(champion)}</span> <span>{queue}</span> <Moment locale="ko"fromNow>{parsed}</Moment>
         </div>
     );
    }

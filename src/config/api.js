@@ -29,6 +29,20 @@ export const AllmatchList = async (accountId) => {
   return data.matches;
 }
 
+export const myGameId = async (accountId) => {
+    const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?endIndex=10&api_key=${key}`);
+    const data = await first.json();
+    // console.log('api.js > myGameId = ' + data.matches[0].gameId)
+    return data.matches.gameId;
+}
+
+export const myMatchInfo = async (gameId) => {
+    const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matches/${gameId}?api_key=${key}`)
+    const data = await first.json();
+    // console.log('api.js > myMatchInfo = ' + data.mapId)
+    return data.mapId;
+}
+
 export const ChampionName = (matchChampionId) => {    
     var cham = "";
     switch(matchChampionId) {
