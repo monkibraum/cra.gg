@@ -525,6 +525,65 @@ ChampionName = (matchChampionId) => {
     return data;
 }
 
+QueueType = (queue) => {
+    var queueName;
+    switch(queue) {
+        case 450:
+            queueName = "무작위 총력전";
+            return queueName;
+        case 430:
+            queueName = "일반 5v5";
+            return queueName;
+    }
+    const data = queueName;
+    return data;
+}
+//     const (    
+//         // PvP 5v5 Summoner's Rift queues
+//         Classic5v5Blind = 430
+//         Classic5v5Draft = 400
+//         Classic5v5Solo  = 420 // Ranked 5v5 Solo/Duo
+//         Classic5v5Flex  = 440 // Ranked 5v5 Flex
+    
+//         // PvP 3v3 Twisted Treeline queues
+//         Classic3v3Blind = 460
+//         Classic3v3Flex  = 470 // Ranked 3v3 Flex
+    
+//         // PvP 5v5 Howling Abyss queues
+//         ARAM5v5 = 450
+    
+//         // Co-op vs AI 5v5 Summoner's Rift queues
+//         Classic5v5IntroAI        = 830
+//         Classic5v5BeginnerAI     = 840
+//         Classic5v5IntermediateAI = 850
+    
+//         // Co-op vs AI 3v3 Twisted Treeline queues
+//         Classic3v3IntroAI        = 810
+//         Classic3v3BeginnerAI     = 820
+//         Classic3v3IntermediateAI = 800
+    
+//         // Rotating queues
+//         // The Crystal Scar
+//         Ascension5v5 = 910
+//         // Summoner's Rift
+//         ARSR5v5          = 325 // All Random Summoner's Rift
+//         Assassinate5v5   = 600 // Blood Hunt Assassin matches
+//         ARURF5v5         = 900 // All Random Ultra Rapid Fire
+//         NexusSiege5v5    = 940
+//         DoomBotsVoting   = 950  // Nightmare bots with difficulty
+//         DoomBotsStandard = 960  // Nightmare bots
+//         SnowARURF        = 1010 // Snow All Random Ultra Rapid Fire
+//         // Howling Abyss
+//         KingPoro5v5 = 920 // Legend of the Poro King matches
+//         // Cosmic Ruins
+//         DarkStar3v3 = 610 // Dark Star: Singularity, only Thresh
+//         // Valoran City Park
+//         InvasionNormal    = 980
+//         InvasionOnslaught = 990
+//         // Substructure 43
+//         Overcharge3v3 = 1000 // PROJECT: Hunters matches
+//     )
+// }
 
 
 render() {
@@ -533,12 +592,15 @@ render() {
     const championFunc = this.ChampionName(championID);
     const chamKR = championFunc[0];
     const chamEN = championFunc[1];
+
+    const queueFunc = this.QueueType(queue);
+    const queueKR = queueFunc;
     
     const parsed = new Date(timestamp).toISOString() ;
     return (
         <div className="search_item small">
             <div className="chamProfile"><img src={`//opgg-static.akamaized.net/images/lol/champion/${chamEN}.png?image=w_140`} /> </div>
-            <span>{chamKR}</span> {championID} <span>{queue}</span> <span className="moment"><Moment locale="ko"fromNow>{parsed}</Moment></span>
+            <span>{chamKR}</span> {championID} <span>{queueKR}</span> <span className="moment"><Moment locale="ko"fromNow>{parsed}</Moment></span>
         </div>
     );
    }
