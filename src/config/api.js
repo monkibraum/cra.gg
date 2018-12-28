@@ -23,10 +23,16 @@ export const findAccountId = async (name) => {
     return data.accountId;
 }
 
-export const AllmatchList = async (accountId) => {    
+export const allMatchList = async (accountId) => {    
   const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matchlists/by-account/${accountId}?endIndex=10&api_key=${key}`);
   const data = await first.json();
   return data.matches;
+}
+
+export const getMatchByGameId = async (gameId) => {    
+  const first = await fetch(`https://cors-anywhere.herokuapp.com/https://kr.api.riotgames.com/lol/match/v3/matches/${gameId}?api_key=${key}`);
+  const data = await first.json();
+  return data;
 }
 
 export const myGameId = async (accountId) => {

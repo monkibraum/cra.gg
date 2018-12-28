@@ -587,7 +587,7 @@ QueueType = (queue) => {
 
 
 render() {
-    const {championID, gameId, queue, timestamp} = this.props;
+    const {championID, gameId, queue, timestamp, detail} = this.props;
 
     const championFunc = this.ChampionName(championID);
     const chamKR = championFunc[0];
@@ -596,11 +596,21 @@ render() {
     const queueFunc = this.QueueType(queue);
     const queueKR = queueFunc;
     
-    const parsed = new Date(timestamp).toISOString() ;
+    const kills = detail.participants.find( parti => championID === parti.championId ).stats.kills;
+    const deaths = detail.participants.find( parti => championID === parti.championId ).stats.deaths;
+    const assists = detail.participants.find( parti => championID === parti.championId ).stats.assists;
+    const myTeam = detail.participants.find( parti => championID === parti.championId ).teamId;
+    
+    const win = detail.teams.find( team => team.teamId == myTeam ).win;
+    console.log(win)
+    
+
+    
+    const parsed = new Date(timestamp).toISOString();
     return (
-        <div className="search_item small">
+        <div className="search_item small" style={win == 'Win' ? {backgroundColor: "#fff"}: {backgroundColor: "#e2b6b3"} }>
             <div className="chamProfile"><img src={`//opgg-static.akamaized.net/images/lol/champion/${chamEN}.png?image=w_140`} /> </div>
-            <span>{chamKR}</span> {championID} <span>{queueKR}</span> <span className="moment"><Moment locale="ko"fromNow>{parsed}</Moment></span>
+            <span>{chamKR}</span> 승패: {win == 'Win'? '승' : '패' } <span>{kills} / <span style={{color:"red"}}>{deaths}</span> / {assists}</span> <span className="moment"><Moment locale="ko"fromNow>{parsed}</Moment></span>
         </div>
     );
    }

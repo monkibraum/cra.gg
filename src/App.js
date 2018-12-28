@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { findSummoner, findInfo, findSummonerInfo, findAccountId, allMatchList, ChampionName, getMatchByGameId } from './config/api';
 import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList, ChampionName, myGameId, myMatchInfo } from './config/api';
 import './App.css';
 import { Dots } from 'react-activity';
@@ -44,6 +45,7 @@ class App extends Component {
     })
     const id = await findSummoner(this.state.name);
     const info = await findInfo(id);
+    
     console.log(id)
     const summoner = await findSummonerInfo(id);
     this.setState({
@@ -60,14 +62,15 @@ class App extends Component {
 
 
   _renderList = () => {
-    console.log('rendering : Listaaaaa')
     // console.log('렌더링해? 현재 state는? ' + this.state.matchList)
     const matchList = this.state.matchList.map((item) => {
       return <Match
         gameId={item.gameId}
         championID={item.champion}
         queue={item.queue}
-        timestamp={item.timestamp} />
+        timestamp={item.timestamp} 
+        detail = {item.detail}
+        />
     })
     return matchList
   }
@@ -76,9 +79,19 @@ class App extends Component {
     this._myMatchInfo();
 
     const accountId = await findAccountId(this.state.name);
-    const matchList = await AllmatchList(accountId);
-    this.setState({ matchList }, ()=>console.log(this.state.matchList))
-    // console.log(this.state.matchList)
+    const matchList = await allMatchList(accountId);
+    this.setState({ matchList })
+
+    const newData = [];
+    this.state.matchList.forEach( async match => {
+      let copy = JSON.parse(JSON.stringify(match));
+      const data = await getMatchByGameId(copy.gameId);
+      let combine = { ...copy, detail: data }
+      newData.push(combine);
+    })
+    
+    this.setState( { matchList : newData }, ()=> console.log(this.state.matchList))
+
   }
 
   _myMatchInfo = async () => {
