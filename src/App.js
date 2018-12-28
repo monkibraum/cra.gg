@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { findSummoner, findInfo, findSummonerInfo, findAccountId, allMatchList, ChampionName, getMatchByGameId } from './config/api';
+import { findSummoner, findInfo, findSummonerInfo, findAccountId, AllmatchList, ChampionName, myGameId, myMatchInfo } from './config/api';
 import './App.css';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
@@ -36,8 +37,8 @@ class App extends Component {
 
 
   search = async () => {
-    this._matchList();
-    
+    this._matchList();    
+
     this.setState({
       isLoaded: false,
       searching: false,
@@ -75,6 +76,8 @@ class App extends Component {
   }
 
   _matchList = async () => {
+    this._myMatchInfo();
+
     const accountId = await findAccountId(this.state.name);
     const matchList = await allMatchList(accountId);
     this.setState({ matchList })
@@ -89,6 +92,16 @@ class App extends Component {
     
     this.setState( { matchList : newData }, ()=> console.log(this.state.matchList))
 
+  }
+
+  _myMatchInfo = async () => {
+    const accountId = await findAccountId(this.state.name);
+    // 이중 for문
+    
+      const gameId = await myGameId(accountId);
+      // console.log('gameId = ' + gameId);
+      const matchInfo = await myMatchInfo(gameId);
+    this.setState({ matchInfo }, () => console.log('matchInfo = ' + this.state.matchInfo))
   }
 
   async componentDidMount() {
