@@ -64,7 +64,8 @@ class App extends Component {
     // console.log('렌더링해? 현재 state는? ' + this.state.matchList)
     const matchList = this.state.matchList.map((item) => {
       return <Match
-        champion={item.champion}
+        gameId={item.gameId}
+        championID={item.champion}
         queue={item.queue}
         timestamp={item.timestamp} />
     })
@@ -125,7 +126,6 @@ class App extends Component {
                 </ul>
               </div>
 
-              <div>최근 전적보기</div>
               {this.state.matchList ? this._renderList() : '?'}
 
             </div>
