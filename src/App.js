@@ -10,7 +10,7 @@ import {
 import './App.css';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
-import Match from './match';
+import Match from './matchItem';
 import 'moment/locale/ko';
 
 class App extends Component {
