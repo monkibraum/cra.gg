@@ -9,10 +9,20 @@ body{
   background: #00b2ff;
 }
 
+.App h1 {
+  width: 300px;
+  margin: auto;
+  padding: 50px;
+  display: block;
+  text-align: center;
+  font-size: 100px;
+  color: #fff;
+}
+
 
 .input_box{
   width: 500px;
-  margin: calc(50vh - 25px) auto 50px;
+  margin: auto;
   border-radius: 2px;
 }
 .input_box input[type="text"]{
@@ -108,6 +118,12 @@ body{
   width: 100%;
 }
 
+.matchResult {
+  margin-bottom: 5px;
+}
+.matchResult div{
+  font-weight:bold;
+}
 .search_item.small .moment{
   position: absolute;
   top: 20px;
